@@ -23,6 +23,7 @@ body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{an
 <section class="section" id="checklists"><div class="section-title"><span>🎒</span><h2>出發前準備與行李清單</h2></div><div class="progress" aria-label="清單完成進度"><div id="progressBar"></div></div><div class="progress-label" id="progressLabel">已完成 0%</div><div class="list-grid"><section class="todo-wrap card"><h3>📝 行前待辦事項</h3><div id="todos"></div></section><section class="todo-wrap card"><h3>🧳 雪國滑雪行李清單</h3><div id="packing"></div></section></div></section>
 </main><footer class="footer wrap">✨ 祝你有個美好的東京・越後湯澤雪白假期！<br>© 2027 Japan Winter Trip Planner</footer><div class="toast" id="toast" role="status"></div>
 <script>
+(function(){
 const days=[
 {date:'1/12（二）',title:'抵達成田・上野',events:[['機場快線','下午','抵達成田機場 → 前往上野','搭乘京成電鐵 Skyliner 直達上野站，步行前往飯店辦理入住。'],['住宿基地','第 1 晚','入住：上野格子（Grids Tokyo Ueno）','位於上野，方便隔天前往淺草與上野站搭乘新幹線。'],['晚餐與漫步','晚上','上野恩賜公園周邊晚餐','可探索上野阿美橫町或車站周邊美食，早點休息。']]},
 {date:'1/13（三）',title:'淺草美食・赴湯澤',events:[['地鐵銀座線','09:00 出發','上野 → 淺草站','搭乘東京地鐵銀座線，約 5 分鐘直達淺草站（原資料記載班距 2–3 分鐘）。'],['必去打卡','09:15','淺草寺雷門合照留念','早晨人潮較少，拍照後穿過雷門進入仲見世通！','must'],['美食漫步','09:35–11:05','淺草 7 大街頭美食 C 字型半圓漫步','',['🍡 AZUMA 淺草吉備糰子（¥400）— 仲見世通中段','🍞 淺草花月堂本店菠蘿麵包（¥300）— 本堂西側','🍘 淺草炸肉餅（¥350）— 傳法院通','🐙 蛸たこ章魚燒仙貝（¥600）— 新仲見世通巷內','🍵 甘紋の香抹茶可麗餅（¥1,400）— 西參道商店街','🍙 淺草うなな鰻魚飯糰（¥600）— 西參道商店街','🍠 芋やす地瓜薯片（¥518）— 11:00 開門，作為壓軸伴手禮']],['回上野拿行李','12:30 抵達','返回上野格子提領行李','從淺草搭銀座線回上野，拿行李並於 13:00 前抵達上野站。'],['已訂新幹線','13:46 發車','搭乘 TOKI 323 前往越後湯澤','上野 13:46 → 越後湯澤 14:56。抵達後前往 Airbnb 入住。']]},
@@ -41,7 +42,10 @@ const start=new Date(2027,0,12);let diff=Math.ceil((start-new Date(new Date().ge
 function get(k,f=''){try{return localStorage.getItem(k)||f}catch{return f}}function set(k,v){try{localStorage.setItem(k,v)}catch{}}
 let reduce=get('yuzawa-motion')==='true'||matchMedia('(prefers-reduced-motion: reduce)').matches;function motionUI(){document.body.classList.toggle('reduce-motion',reduce);let b=document.getElementById('motionToggle');b.textContent=reduce?'⏸ 動態關':'✨ 動態開';b.setAttribute('aria-pressed',String(reduce))}motionUI();document.getElementById('motionToggle').onclick=()=>{reduce=!reduce;set('yuzawa-motion',String(reduce));motionUI()};
 let toastTimer;function toast(msg){let el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2200)}document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',async()=>{let t=b.dataset.copy;try{await navigator.clipboard.writeText(t);toast('地址已複製')}catch{let x=document.createElement('textarea');x.value=t;document.body.append(x);x.select();document.execCommand('copy');x.remove();toast('地址已複製')}}));
+})();
 </script></body></html>
+
+
 
 
 
